@@ -12,13 +12,13 @@ const SkillsSection = () => {
 
   const filteredSkills = selectedCategory === 'all' 
     ? skills 
-    : skills.filter(skill => skill.category === selectedCategory);
+    : skills.filter(skill => skill.categories.includes(selectedCategory));
 
   const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.05 }}
+      transition={{ duration: 0.3, delay: index * 0.02 }}
       viewport={{ once: true }}
       whileHover={{ scale: 1.05, y: -5 }}
       className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
@@ -46,21 +46,34 @@ const SkillsSection = () => {
       </h3>
       
       {/* Proficiency Bar */}
-      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-2">
+      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-3">
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: `${skill.proficiency}%` }}
-          transition={{ duration: 1, delay: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
           className="h-2 rounded-full"
           style={{ backgroundColor: skill.color }}
         />
       </div>
       
-      <div className="flex items-center justify-between">
-        <span className="text-sm text-gray-500 dark:text-gray-400 capitalize">
-          {skill.category.replace('_', ' ')}
-        </span>
+      {/* Categories */}
+      <div className="flex flex-wrap gap-1 mb-2">
+        {skill.categories.map((category) => {
+          const categoryInfo = skillCategories.find(cat => cat.id === category);
+          return (
+            <span
+              key={category}
+              className="px-2 py-1 text-xs font-medium rounded-md text-white"
+              style={{ backgroundColor: categoryInfo?.color || skill.color }}
+            >
+              {categoryInfo?.name.replace(' & ', ' ') || category}
+            </span>
+          );
+        })}
+      </div>
+      
+      <div className="flex items-center justify-end">
         <div 
           className="w-3 h-3 rounded-full"
           style={{ backgroundColor: skill.color }}
@@ -75,7 +88,7 @@ const SkillsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
@@ -91,7 +104,7 @@ const SkillsSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
@@ -127,28 +140,29 @@ const SkillsSection = () => {
         {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredSkills.map((skill, index) => (
-            <SkillCard key={skill.name} skill={skill} index={index} />
+            <SkillCard key={`${skill.name}-${skill.categories.join('-')}`} skill={skill} index={index} />
           ))}
         </div>
 
-        {/* Summary Stats */}
+        {/* Summary Stats - Justified Boxes */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="mt-16 flex flex-wrap justify-center gap-4"
         >
           {skillCategories.map(category => {
-            const categorySkills = skills.filter(skill => skill.category === category.id);
-            const avgProficiency = Math.round(
+            const categorySkills = skills.filter(skill => skill.categories.includes(category.id));
+            const avgProficiency = categorySkills.length > 0 ? Math.round(
               categorySkills.reduce((sum, skill) => sum + skill.proficiency, 0) / categorySkills.length
-            );
+            ) : 0;
             
             return (
-              <div
+              <motion.div
                 key={category.id}
-                className="text-center p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                className="text-center p-6 bg-white dark:bg-gray-700 rounded-xl shadow-lg min-w-[160px] flex-1 max-w-[200px]"
               >
                 <div 
                   className="text-3xl font-bold mb-2"
@@ -156,13 +170,13 @@ const SkillsSection = () => {
                 >
                   {avgProficiency}%
                 </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                <div className="text-sm text-gray-600 dark:text-gray-400 mb-1 font-medium">
                   {category.name}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-500">
-                  {categorySkills.length} skills
+                  {categorySkills.length} skill{categorySkills.length !== 1 ? 's' : ''}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </motion.div>

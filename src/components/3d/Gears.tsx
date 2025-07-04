@@ -2,7 +2,6 @@
 
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { usePortfolioStore } from '@/lib/store';
 
@@ -87,12 +86,11 @@ const Gear = ({
       scale={scale}
       geometry={gearGeometry}
     >
-      <MeshDistortMaterial
-        color={theme === 'dark' ? color : '#3b82f6'}
+      <meshStandardMaterial
+        color={theme === 'dark' ? color : new THREE.Color(color).multiplyScalar(0.8)}
         roughness={0.4}
-        metalness={0.8}
-        distort={0.1}
-        speed={2}
+        metalness={0.7}
+        emissive={new THREE.Color(color).multiplyScalar(0.1)}
       />
     </mesh>
   );

@@ -13,13 +13,13 @@ const PortfolioSection = () => {
 
   const filteredProjects = selectedCategory === 'all' 
     ? projects 
-    : projects.filter(project => project.category === selectedCategory);
+    : projects.filter(project => project.categories.includes(selectedCategory));
 
   const ProjectCard = ({ project, index }: { project: Project; index: number }) => (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.3, delay: index * 0.03 }}
       viewport={{ once: true }}
       whileHover={{ y: -10 }}
       className="group cursor-pointer"
@@ -54,10 +54,24 @@ const PortfolioSection = () => {
             </span>
           </div>
         )}
-        <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-white/90 text-gray-800 text-xs font-medium rounded-full capitalize">
-            {project.category.replace('_', ' ')}
-          </span>
+        <div className="absolute top-4 left-4 flex flex-wrap gap-1">
+          {project.categories.slice(0, 2).map((category) => {
+            const categoryInfo = projectCategories.find(cat => cat.id === category);
+            return (
+              <span
+                key={category}
+                className="px-2 py-1 text-white text-xs font-medium rounded-full"
+                style={{ backgroundColor: categoryInfo?.color || '#6B7280' }}
+              >
+                {categoryInfo?.name || category}
+              </span>
+            );
+          })}
+          {project.categories.length > 2 && (
+            <span className="px-2 py-1 bg-gray-600 text-white text-xs font-medium rounded-full">
+              +{project.categories.length - 2}
+            </span>
+          )}
         </div>
       </div>
     </motion.div>
@@ -105,6 +119,22 @@ const PortfolioSection = () => {
               <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-6">
                 {selectedProject.description}
               </p>
+
+              {/* Categories */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {selectedProject.categories.map((category) => {
+                  const categoryInfo = projectCategories.find(cat => cat.id === category);
+                  return (
+                    <span
+                      key={category}
+                      className="px-3 py-1 text-white text-sm rounded-full font-medium"
+                      style={{ backgroundColor: categoryInfo?.color || '#6B7280' }}
+                    >
+                      {categoryInfo?.name || category}
+                    </span>
+                  );
+                })}
+              </div>
               
               <div className="flex flex-wrap gap-2 mb-6">
                 {selectedProject.technologies.map((tech, index) => (
@@ -172,7 +202,7 @@ const PortfolioSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
@@ -189,7 +219,7 @@ const PortfolioSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.4 }}
             viewport={{ once: true }}
             className="mb-16"
           >
@@ -208,7 +238,7 @@ const PortfolioSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
@@ -247,10 +277,9 @@ const PortfolioSection = () => {
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-
-        {/* Project Modal */}
-        <ProjectModal />
       </div>
+
+      <ProjectModal />
     </section>
   );
 };

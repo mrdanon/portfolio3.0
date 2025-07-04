@@ -2,7 +2,7 @@ export interface Project {
     id: string;
     title: string;
     description: string;
-    category: '3d' | 'ai' | 'education' | 'addons' | 'games' | 'architectural';
+    categories: string[];
     image: string;
     technologies: string[];
     link?: string;
@@ -14,9 +14,23 @@ export interface Project {
   export interface Skill {
     name: string;
     icon: string;
-    category: '3d' | 'programming' | 'ai' | 'design' | 'languages';
+    categories: string[];
     proficiency: number; // 0-100
-    color?: string;
+    color: string;
+  }
+  
+  export interface SkillCategory {
+    id: string;
+    name: string;
+    color: string;
+    description?: string;
+  }
+  
+  export interface ProjectCategory {
+    id: string;
+    name: string;
+    color: string;
+    description?: string;
   }
   
   export interface Experience {
@@ -26,11 +40,30 @@ export interface Project {
     period: string;
     description: string[];
     technologies: string[];
-    logo?: string;
-    current?: boolean;
+    location?: string;
+    type?: 'full-time' | 'part-time' | 'contract' | 'freelance' | 'remote';
   }
   
-  export interface Personal {
+  export interface Achievement {
+    id: string;
+    title: string;
+    description: string;
+    date: string;
+    category: string;
+    link?: string;
+  }
+  
+  export interface Education {
+    id: string;
+    institution: string;
+    degree: string;
+    field: string;
+    period: string;
+    description?: string;
+    achievements?: string[];
+  }
+  
+  export interface PersonalInfo {
     name: string;
     title: string;
     email: string;
@@ -42,14 +75,20 @@ export interface Project {
       youtube: string;
       instagram: string;
       artstation: string;
-      linkedin?: string;
       github?: string;
     };
   }
   
-  export interface Education {
-    degree: string;
-    institution: string;
-    period: string;
-    description: string;
+  export interface PortfolioState {
+    theme: 'light' | 'dark';
+    currentSection: string;
+    isMenuOpen: boolean;
+    isLoading: boolean;
+    error: string | null;
+    setTheme: (theme: 'light' | 'dark') => void;
+    setCurrentSection: (section: string) => void;
+    toggleMenu: () => void;
+    closeMenu: () => void;
+    setLoading: (loading: boolean) => void;
+    setError: (error: string | null) => void;
   }

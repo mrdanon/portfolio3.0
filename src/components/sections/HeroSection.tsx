@@ -2,22 +2,14 @@
 
 import { Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Download, Mail, Play } from 'lucide-react';
+import { Download, Mail, Play } from 'lucide-react';
 import Scene, { SceneFallback } from '@/components/3d/Scene';
 import Gears from '@/components/3d/Gears';
-import { FloatingParticles, BackgroundParticles } from '@/components/3d/Particles';
-import { HeroScrollAnimation, MouseParallax } from '@/components/3d/ScrollAnimation';
+import { HeroScrollAnimation } from '@/components/3d/ScrollAnimation';
 import { personal } from '@/data/personal';
 import Image from 'next/image';
 
 const HeroSection = () => {
-  const scrollToNextSection = () => {
-    const aboutSection = document.getElementById('about');
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleDownloadCV = () => {
     // Create download link for CV
     const link = document.createElement('a');
@@ -35,19 +27,15 @@ const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <Suspense fallback={<SceneFallback />}>
           <Scene enableControls={false} cameraPosition={[0, 0, 10]} className="opacity-25 dark:opacity-35">
-            {/* <MouseParallax intensity={0.05}>
-              <BackgroundParticles />
-            </MouseParallax> */}
             <HeroScrollAnimation>
               <Gears />
             </HeroScrollAnimation>
-            {/* <FloatingParticles /> */}
           </Scene>
         </Suspense>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,7 +47,7 @@ const HeroSection = () => {
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative mb-8 inline-block"
+            className="relative mb-8 inline-block mt-8"
           >
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-2xl mx-auto">
               <Image 
@@ -164,24 +152,6 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      {/* <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.4 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
-      >
-        <motion.button
-          onClick={scrollToNextSection}
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center space-y-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
-        >
-          <span className="text-sm font-medium">Scroll to explore</span>
-          <ChevronDown size={24} />
-        </motion.button>
-      </motion.div> */}
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/30 dark:from-gray-900/50 dark:via-transparent dark:to-gray-900/30 pointer-events-none" />

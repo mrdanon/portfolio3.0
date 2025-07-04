@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, BookOpen, Briefcase, Users, Target, Globe } from 'lucide-react';
+import { Award, BookOpen, Briefcase, Users, Target } from 'lucide-react';
 import { personal } from '@/data/personal';
 import { achievements, education } from '@/data/experience';
 import Image from 'next/image';

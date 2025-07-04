@@ -1,4 +1,55 @@
-import { Project } from '@/types'
+import { Project, ProjectCategory } from '@/types'
+
+export const projectCategories: ProjectCategory[] = [
+  {
+    id: '3d',
+    name: '3D & Animation',
+    color: '#E87D0D',
+    description: '3D modeling, animation, and visualization'
+  },
+  {
+    id: 'ai',
+    name: 'AI & Machine Learning',
+    color: '#FF6B6B',
+    description: 'Artificial intelligence and automation'
+  },
+  {
+    id: 'education',
+    name: 'Educational',
+    color: '#22C55E',
+    description: 'Educational content and teaching materials'
+  },
+  {
+    id: 'addons',
+    name: 'Blender Addons',
+    color: '#3B82F6',
+    description: 'Custom Blender addons and tools'
+  },
+  {
+    id: 'games',
+    name: 'Game Development',
+    color: '#8B5CF6',
+    description: 'Game development and interactive media'
+  },
+  {
+    id: 'architectural',
+    name: 'Architectural',
+    color: '#06B6D4',
+    description: 'Architectural visualization and design'
+  },
+  {
+    id: 'animation',
+    name: 'Animation',
+    color: '#F59E0B',
+    description: 'Character and motion animation'
+  },
+  {
+    id: 'video',
+    name: 'Video Production',
+    color: '#FF3366',
+    description: 'Video editing and post-production'
+  }
+]
 
 export const projects: Project[] = [
   // Featured Projects
@@ -6,7 +57,7 @@ export const projects: Project[] = [
     id: "showreel",
     title: "Professional Showreel",
     description: "A comprehensive showcase of my 3D animation, architectural visualization, and educational content work spanning multiple years.",
-    category: "3d",
+    categories: ["3d", "animation", "video"],
     image: "/Showreel_cover.webp",
     video: "https://www.youtube.com/@dr.blender",
     technologies: ["Blender", "After Effects", "Premiere Pro", "DaVinci Resolve"],
@@ -17,7 +68,7 @@ export const projects: Project[] = [
     id: "ai-avatars",
     title: "AI Avatar Integration",
     description: "Interactive AI-powered characters using Unreal Engine and ConvAI for real-time conversations and presentations.",
-    category: "ai",
+    categories: ["ai", "3d", "animation"],
     image: "/portfolio/avatar_ai(1).webp",
     technologies: ["Unreal Engine", "ConvAI", "AI Integration", "Character Animation"],
     featured: true,
@@ -31,7 +82,7 @@ export const projects: Project[] = [
     id: "microcosmos",
     title: "Microcosmos Animation",
     description: "Award-winning educational animation showcasing cellular processes and microscopic world interactions.",
-    category: "education",
+    categories: ["education", "3d", "animation"],
     image: "/portfolio/Micor_cosmos_animation.webp",
     technologies: ["Blender", "Geometry Nodes", "Scientific Visualization"],
     featured: true,
@@ -41,7 +92,7 @@ export const projects: Project[] = [
     id: "silver-blood",
     title: "Silver Blood Animation",
     description: "Award-winning scientific visualization of blood cell interactions used in medical education.",
-    category: "education",
+    categories: ["education", "3d", "animation"],
     image: "/portfolio/Silver_blod_animation.webp",
     technologies: ["Blender", "Medical Visualization", "After Effects"],
     featured: true,
@@ -53,7 +104,7 @@ export const projects: Project[] = [
     id: "oh-my-gear",
     title: "Oh My Gear Addon",
     description: "Custom Blender addon for procedural gear generation and mechanical animation workflows.",
-    category: "addons",
+    categories: ["addons", "3d"],
     image: "/OhMyGear_addon.webp",
     technologies: ["Python", "Blender API", "Procedural Generation"],
     gallery: ["/OhMyGear_addon.webp", "/portfolio/OhMyGears_addon.webp"]
@@ -62,7 +113,7 @@ export const projects: Project[] = [
     id: "oh-my-graph",
     title: "Oh My Graph Addon",
     description: "Blender addon for creating and managing complex node-based workflows and data visualization.",
-    category: "addons",
+    categories: ["addons", "3d"],
     image: "/OhMyGraph_addon.webp",
     technologies: ["Python", "Blender API", "Data Visualization"],
     gallery: ["/OhMyGraph_addon.webp", "/portfolio/OhMyGraph_addon.webp"]
@@ -71,7 +122,7 @@ export const projects: Project[] = [
     id: "oh-my-lights",
     title: "Oh My Lights Addon",
     description: "Professional lighting setup and management tool for Blender artists.",
-    category: "addons",
+    categories: ["addons", "3d"],
     image: "/OhMyLight_addon.webp",
     technologies: ["Python", "Blender API", "Lighting Systems"],
     gallery: ["/OhMyLight_addon.webp", "/portfolio/OhMyLights_animations.webp"]
@@ -80,7 +131,7 @@ export const projects: Project[] = [
     id: "oh-my-time",
     title: "Oh My Time Addon",
     description: "Time management and animation timeline tools for efficient Blender workflows.",
-    category: "addons",
+    categories: ["addons", "3d"],
     image: "/OhMyTime_addon.webp",
     technologies: ["Python", "Blender API", "Animation Tools"]
   },
@@ -90,7 +141,7 @@ export const projects: Project[] = [
     id: "educational-animations",
     title: "Educational Animations",
     description: "Collection of educational animations created for the Polish Ministry of Education, covering various scientific topics.",
-    category: "education",
+    categories: ["education", "3d", "animation"],
     image: "/Educational_animations_cover.webp",
     technologies: ["Blender", "Educational Content", "Scientific Visualization"],
     gallery: [
@@ -104,7 +155,7 @@ export const projects: Project[] = [
     id: "gastronomic-animations",
     title: "Gastronomic Machine Animations",
     description: "Technical animations showcasing industrial kitchen equipment and food processing machinery.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/Gastronomic_animations_machines(1).webp",
     technologies: ["Blender", "Technical Animation", "Industrial Design"],
     gallery: [
@@ -117,7 +168,7 @@ export const projects: Project[] = [
     id: "pos-system",
     title: "POS System Animation",
     description: "Interactive Point of Sale system demonstration animation for retail environments.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/POS_system_animations.webp",
     technologies: ["Blender", "UI Animation", "Commercial Visualization"]
   },
@@ -127,7 +178,7 @@ export const projects: Project[] = [
     id: "architectural-visualizations",
     title: "Architectural Visualizations",
     description: "High-quality architectural renderings and construction sequence animations for real estate and development projects.",
-    category: "architectural",
+    categories: ["architectural", "3d"],
     image: "/Archi_vis_cover.webp",
     technologies: ["Blender", "Architectural Visualization", "Photorealistic Rendering"],
     gallery: [
@@ -144,7 +195,7 @@ export const projects: Project[] = [
     id: "roof-animation",
     title: "Roof Construction Animation",
     description: "Detailed construction sequence animation showing roof assembly and installation processes.",
-    category: "architectural",
+    categories: ["architectural", "3d", "animation"],
     image: "/portfolio/roof_animation(1).webp",
     technologies: ["Blender", "Construction Visualization", "Technical Animation"],
     gallery: [
@@ -156,7 +207,7 @@ export const projects: Project[] = [
     id: "photovoltaic-farm",
     title: "Photovoltaic Farm Renders",
     description: "Solar energy installation visualization for renewable energy projects.",
-    category: "architectural",
+    categories: ["architectural", "3d"],
     image: "/portfolio/Foto_woltaics_farm_renders.webp",
     technologies: ["Blender", "Renewable Energy", "Environmental Visualization"]
   },
@@ -166,7 +217,7 @@ export const projects: Project[] = [
     id: "kong-game",
     title: "Kong Game Animations",
     description: "Character animations and game concept development for a retro-style platformer game.",
-    category: "games",
+    categories: ["games", "3d", "animation"],
     image: "/portfolio/Kong_game_animations.webp",
     technologies: ["Blender", "Game Development", "Character Animation"]
   },
@@ -174,7 +225,7 @@ export const projects: Project[] = [
     id: "board-game",
     title: "Board Game Design",
     description: "3D visualization and design elements for a strategic board game project.",
-    category: "games",
+    categories: ["games", "3d"],
     image: "/portfolio/Board_game1.webp",
     technologies: ["Blender", "Game Design", "3D Modeling"],
     gallery: [
@@ -187,7 +238,7 @@ export const projects: Project[] = [
     id: "game-concepts",
     title: "Game Concept Animations",
     description: "Animated prototypes and concept visualizations for various game projects.",
-    category: "games",
+    categories: ["games", "3d", "animation"],
     image: "/portfolio/Game_concept_animations.webp",
     technologies: ["Blender", "Game Concepts", "Prototype Animation"]
   },
@@ -197,14 +248,10 @@ export const projects: Project[] = [
     id: "master-studies",
     title: "Master Studies Projects",
     description: "Collection of advanced 3D projects completed during Master's degree in Media Arts & Visual Education.",
-    category: "education",
+    categories: ["education", "3d"],
     image: "/Master_studies_cover.webp",
     technologies: ["Blender", "Academic Research", "Advanced 3D Techniques"],
-    gallery: [
-      "/Master_studies_cover.webp",
-      "/portfolio/3D_tracking_vfx.webp",
-      "/portfolio/Render_of_eclipse.webp"
-    ]
+    gallery: ["/Master_studies_cover.webp"]
   },
 
   // Highlighted Projects
@@ -212,7 +259,7 @@ export const projects: Project[] = [
     id: "highlighted-projects",
     title: "Highlighted Projects",
     description: "Showcase of exceptional work including award-winning animations and innovative visualizations.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/Highlighted_projects_cover.webp",
     technologies: ["Blender", "Advanced Animation", "Creative Visualization"],
     gallery: [
@@ -228,7 +275,7 @@ export const projects: Project[] = [
     id: "apparatus-modeling",
     title: "Scientific Apparatus Modeling",
     description: "Detailed 3D models of scientific equipment for educational and research purposes.",
-    category: "education",
+    categories: ["education", "3d"],
     image: "/portfolio/Model_aparatu (1).webp",
     technologies: ["Blender", "Scientific Modeling", "Technical Accuracy"],
     gallery: [
@@ -241,7 +288,7 @@ export const projects: Project[] = [
     id: "post-office",
     title: "Post Office Animation",
     description: "Service workflow animation for postal service operations and customer interactions.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/Post_office_animations.webp",
     technologies: ["Blender", "Service Animation", "Workflow Visualization"]
   },
@@ -249,7 +296,7 @@ export const projects: Project[] = [
     id: "shoe-production",
     title: "Shoe Production Animation",
     description: "Manufacturing process animation showing shoe construction and assembly workflows.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/Schoe_sawing_animations.webp",
     technologies: ["Blender", "Manufacturing", "Process Animation"],
     gallery: [
@@ -261,7 +308,7 @@ export const projects: Project[] = [
     id: "pepco-basket",
     title: "Pepco Basket Renders",
     description: "Product visualization and commercial renders for retail basket designs.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/Pepco_bascet_renders.webp",
     technologies: ["Blender", "Product Visualization", "Commercial Rendering"]
   },
@@ -269,7 +316,7 @@ export const projects: Project[] = [
     id: "transformer-animation",
     title: "Transformer Animation",
     description: "Technical animation of electrical transformer components and operation principles.",
-    category: "education",
+    categories: ["education", "3d"],
     image: "/portfolio/transformator_animation.webp",
     technologies: ["Blender", "Technical Animation", "Engineering Visualization"]
   },
@@ -277,7 +324,7 @@ export const projects: Project[] = [
     id: "waiter-animation",
     title: "Waiter Service Animation",
     description: "Character animation showcasing restaurant service workflows and customer interactions.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/Waiter_animation.webp",
     technologies: ["Blender", "Character Animation", "Service Industry"]
   },
@@ -285,7 +332,7 @@ export const projects: Project[] = [
     id: "comic-characters",
     title: "Comic Characters",
     description: "Stylized character designs and animations for comic book and graphic novel projects.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/comic_characters.webp",
     technologies: ["Blender", "Character Design", "Stylized Animation"]
   },
@@ -293,7 +340,7 @@ export const projects: Project[] = [
     id: "pig-meat-animation",
     title: "Pig Meat Processing Animation",
     description: "Educational animation showing meat processing workflows for food industry training.",
-    category: "education",
+    categories: ["education", "3d"],
     image: "/portfolio/Pig_meat_animation.webp",
     technologies: ["Blender", "Food Industry", "Process Animation"]
   },
@@ -301,19 +348,12 @@ export const projects: Project[] = [
     id: "printing-machine",
     title: "Offset Printing Machine",
     description: "Technical animation of industrial printing equipment and paper processing workflows.",
-    category: "3d",
+    categories: ["3d", "animation"],
     image: "/portfolio/ofset_printing_machine.webp",
     technologies: ["Blender", "Industrial Animation", "Technical Visualization"]
   }
 ]
 
-export const projectCategories = [
-  { id: '3d', name: '3D & Animation', color: '#4F46E5' },
-  { id: 'ai', name: 'AI Projects', color: '#DC2626' },
-  { id: 'education', name: 'Educational', color: '#059669' },
-  { id: 'addons', name: 'Blender Addons', color: '#EA580C' },
-  { id: 'games', name: 'Game Development', color: '#7C3AED' },
-  { id: 'architectural', name: 'Architectural', color: '#0891B2' }
-]
-
 export const featuredProjects = projects.filter(project => project.featured)
+
+export default projects
