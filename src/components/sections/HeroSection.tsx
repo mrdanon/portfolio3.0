@@ -34,14 +34,14 @@ const HeroSection = () => {
       {/* 3D Background */}
       <div className="absolute inset-0 z-0">
         <Suspense fallback={<SceneFallback />}>
-          <Scene enableControls={false} cameraPosition={[0, 0, 8]} className="opacity-30 dark:opacity-20">
-            <MouseParallax intensity={0.05}>
+          <Scene enableControls={false} cameraPosition={[0, 0, 10]} className="opacity-25 dark:opacity-35">
+            {/* <MouseParallax intensity={0.05}>
               <BackgroundParticles />
-            </MouseParallax>
+            </MouseParallax> */}
             <HeroScrollAnimation>
               <Gears />
             </HeroScrollAnimation>
-            <FloatingParticles />
+            {/* <FloatingParticles /> */}
           </Scene>
         </Suspense>
       </div>
@@ -166,7 +166,7 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.4 }}
@@ -181,7 +181,7 @@ const HeroSection = () => {
           <span className="text-sm font-medium">Scroll to explore</span>
           <ChevronDown size={24} />
         </motion.button>
-      </motion.div>
+      </motion.div> */}
 
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-transparent to-white/30 dark:from-gray-900/50 dark:via-transparent dark:to-gray-900/30 pointer-events-none" />

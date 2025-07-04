@@ -16,24 +16,18 @@ export const skills: Skill[] = [
     proficiency: 85,
     color: "#000000"
   },
-  {
-    name: "Three.js",
-    icon: "/icons/threejs.png",
-    category: "3d",
-    proficiency: 80,
-    color: "#000000"
-  },
+ 
   {
     name: "After Effects",
     icon: "/icons/after-effects.png",
-    category: "3d",
+    category: "design",
     proficiency: 80,
     color: "#9999FF"
   },
   {
     name: "DaVinci Resolve",
     icon: "/icons/Davinci_resolve.png",
-    category: "3d",
+    category: "design",
     proficiency: 75,
     color: "#FF6B6B"
   },
@@ -52,6 +46,13 @@ export const skills: Skill[] = [
     category: "programming",
     proficiency: 85,
     color: "#3776AB"
+  },
+  {
+    name: "Three.js",
+    icon: "/icons/threejs.png",
+    category: "programming",
+    proficiency: 80,
+    color: "#000000"
   },
   {
     name: "JavaScript",
@@ -106,7 +107,7 @@ export const skills: Skill[] = [
   },
   {
     name: "ChatGPT API",
-    icon: "/icons/ai_brain.png",
+    icon: "/icons/gpt.webp",
     category: "ai",
     proficiency: 75,
     color: "#00A67E"
@@ -166,14 +167,14 @@ export const skills: Skill[] = [
   // Languages
   {
     name: "Polish",
-    icon: "/icons/photo_icon.png",
+    icon: "/icons/PL_flag.webp",
     category: "languages",
     proficiency: 100,
     color: "#DC143C"
   },
   {
     name: "English",
-    icon: "/icons/photo_icon.png",
+    icon: "/icons/UK_flag.webp",
     category: "languages",
     proficiency: 90,
     color: "#4169E1"

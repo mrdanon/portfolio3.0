@@ -88,18 +88,12 @@ const AboutSection = () => {
             <div className="relative">
               <div className="w-full max-w-md mx-auto lg:mx-0">
                 <Image 
-                  src="/MyPhotosmall.jpg" 
+                  src="/MyPhoto.jpg" 
                   alt="Piotr Dankowiakowski"
                   width={400}
                   height={400}
                   className="w-full h-auto rounded-2xl shadow-2xl"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-2xl shadow-lg">
-                  <div className="flex items-center space-x-2">
-                    <Globe className="w-5 h-5" />
-                    <span className="font-medium">Based in Warsaw, Poland</span>
-                  </div>
-                </div>
               </div>
             </div>
           </motion.div>

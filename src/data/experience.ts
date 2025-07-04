@@ -20,7 +20,7 @@ export const experiences: Experience[] = [
       "AI Integration",
       "Curriculum Development"
     ],
-    logo: "/icons/designer_icon.png"
+    logo: "/logos/AES_logo.webp"
   },
   {
     id: "green-energy",
@@ -44,7 +44,7 @@ export const experiences: Experience[] = [
       "Python",
       "Data Visualization"
     ],
-    logo: "/icons/ai_brain.png"
+    logo: "/logos/Geen_logo.webp"
   },
   {
     id: "eduexpert",
@@ -68,7 +68,7 @@ export const experiences: Experience[] = [
       "Motion Graphics",
       "Geometry Nodes"
     ],
-    logo: "/icons/designer_icon.png"
+    logo: "/logos/Edu_expert_logo.webp"
   },
   {
     id: "freelance",
@@ -92,7 +92,6 @@ export const experiences: Experience[] = [
       "Unreal Engine",
       "3D Modeling"
     ],
-    logo: "/icons/blender.png"
   }
 ]
 
