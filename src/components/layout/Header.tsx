@@ -28,12 +28,17 @@ const Header = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace('#', ''));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setCurrentSection(sectionId.replace('#', ''));
-    }
+    // Close menu first for mobile
     closeMenu();
+    
+    // Small delay to ensure menu closes properly on mobile
+    setTimeout(() => {
+      const element = document.getElementById(sectionId.replace('#', ''));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setCurrentSection(sectionId.replace('#', ''));
+      }
+    }, 100);
   };
 
   const toggleTheme = () => {

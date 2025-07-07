@@ -10,13 +10,13 @@ export const projectCategories: ProjectCategory[] = [
   {
     id: 'ai',
     name: 'AI & Machine Learning',
-    color: '#4B5563',
+    color: '#6B7280',
     description: 'Artificial intelligence and automation'
   },
   {
     id: 'education',
     name: 'Educational',
-    color: '#9CA3AF',
+    color: '#6B7280',
     description: 'Educational content and teaching materials'
   },
   {
@@ -28,25 +28,25 @@ export const projectCategories: ProjectCategory[] = [
   {
     id: 'games',
     name: 'Game Development',
-    color: '#374151',
+    color: '#6B7280',
     description: 'Game development and interactive media'
   },
   {
     id: 'architectural',
     name: 'Architectural',
-    color: '#9CA3AF',
+    color: '#6B7280',
     description: 'Architectural visualization and design'
   },
   {
     id: 'animation',
     name: 'Animation',
-    color: '#4B5563',
+    color: '#6B7280',
     description: 'Character and motion animation'
   },
   {
     id: 'video',
     name: 'Video Production',
-    color: '#374151',
+    color: '#6B7280',
     description: 'Video editing and post-production'
   }
 ]

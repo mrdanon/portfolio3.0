@@ -10,13 +10,13 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'programming',
     name: 'Programming',
-    color: '#4B5563',
+    color: '#6B7280',
     description: 'Software development and scripting'
   },
   {
     id: 'ai',
     name: 'AI & Machine Learning',
-    color: '#9CA3AF',
+    color: '#6B7280',
     description: 'Artificial intelligence and automation'
   },
   {
@@ -28,13 +28,13 @@ export const skillCategories: SkillCategory[] = [
   {
     id: 'video',
     name: 'Video Production',
-    color: '#374151',
+    color: '#6B7280',
     description: 'Video editing, motion graphics, and post-production'
   },
   {
     id: 'languages',
     name: 'Languages',
-    color: '#4B5563',
+    color: '#6B7280',
     description: 'Spoken and written languages'
   }
 ]
