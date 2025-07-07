@@ -4,37 +4,37 @@ export const skillCategories: SkillCategory[] = [
   {
     id: '3d',
     name: '3D & Animation',
-    color: '#E87D0D',
+    color: '#6B7280',
     description: '3D modeling, animation, and visualization'
   },
   {
     id: 'programming',
     name: 'Programming',
-    color: '#3776AB',
+    color: '#4B5563',
     description: 'Software development and scripting'
   },
   {
     id: 'ai',
     name: 'AI & Machine Learning',
-    color: '#FF6B6B',
+    color: '#9CA3AF',
     description: 'Artificial intelligence and automation'
   },
   {
     id: 'design',
     name: 'Design & Graphics',
-    color: '#31A8FF',
+    color: '#6B7280',
     description: 'Graphic design and visual arts'
   },
   {
     id: 'video',
     name: 'Video Production',
-    color: '#FF3366',
+    color: '#374151',
     description: 'Video editing, motion graphics, and post-production'
   },
   {
     id: 'languages',
     name: 'Languages',
-    color: '#4169E1',
+    color: '#4B5563',
     description: 'Spoken and written languages'
   }
 ]

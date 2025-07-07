@@ -4,49 +4,49 @@ export const projectCategories: ProjectCategory[] = [
   {
     id: '3d',
     name: '3D & Animation',
-    color: '#E87D0D',
+    color: '#6B7280',
     description: '3D modeling, animation, and visualization'
   },
   {
     id: 'ai',
     name: 'AI & Machine Learning',
-    color: '#FF6B6B',
+    color: '#4B5563',
     description: 'Artificial intelligence and automation'
   },
   {
     id: 'education',
     name: 'Educational',
-    color: '#22C55E',
+    color: '#9CA3AF',
     description: 'Educational content and teaching materials'
   },
   {
     id: 'addons',
     name: 'Blender Addons',
-    color: '#3B82F6',
+    color: '#6B7280',
     description: 'Custom Blender addons and tools'
   },
   {
     id: 'games',
     name: 'Game Development',
-    color: '#8B5CF6',
+    color: '#374151',
     description: 'Game development and interactive media'
   },
   {
     id: 'architectural',
     name: 'Architectural',
-    color: '#06B6D4',
+    color: '#9CA3AF',
     description: 'Architectural visualization and design'
   },
   {
     id: 'animation',
     name: 'Animation',
-    color: '#F59E0B',
+    color: '#4B5563',
     description: 'Character and motion animation'
   },
   {
     id: 'video',
     name: 'Video Production',
-    color: '#FF3366',
+    color: '#374151',
     description: 'Video editing and post-production'
   }
 ]

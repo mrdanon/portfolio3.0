@@ -13,8 +13,8 @@ const HeroSection = () => {
   const handleDownloadCV = () => {
     // Create download link for CV
     const link = document.createElement('a');
-    link.href = '/cv/Piotr_Dankowiakowski_CV.pdf';
-    link.download = 'Piotr_Dankowiakowski_CV.pdf';
+    link.href = '/PD_Cv_en.pdf';
+    link.download = 'PD_Cv_en.pdf';
     link.click();
   };
 
@@ -108,10 +108,14 @@ const HeroSection = () => {
             </motion.button>
 
             <motion.a
-              href={`mailto:${personal.email}`}
+              href="#contact"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               className="flex items-center space-x-2 bg-transparent border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-8 py-4 rounded-full font-medium transition-all duration-200"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               <Mail size={20} />
               <span>Contact Me</span>

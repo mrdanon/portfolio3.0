@@ -42,6 +42,8 @@ export interface Project {
     technologies: string[];
     location?: string;
     type?: 'full-time' | 'part-time' | 'contract' | 'freelance' | 'remote';
+    current?: boolean;
+    logo?: string;
   }
   
   export interface Achievement {
