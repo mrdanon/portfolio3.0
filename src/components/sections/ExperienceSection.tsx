@@ -121,9 +121,17 @@ const ExperienceSection = () => {
             <p className="text-gray-600 dark:text-gray-400 mb-6 max-w-2xl mx-auto">
               I&apos;m always open to discussing new opportunities and exciting projects. Let&apos;s create something amazing together!
             </p>
-            <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full transition-colors duration-200">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-full transition-colors duration-200"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               Get In Touch
-            </button>
+            </motion.button>
           </div>
         </motion.div>
       </div>

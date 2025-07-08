@@ -53,7 +53,7 @@ export const skills: Skill[] = [
     icon: "/icons/unreal-icon.png",
     categories: ["3d"],
     proficiency: 85,
-    color: "#000000"
+    color: "#ADADAD"
   },
   {
     name: "Nomad Sculpt",
@@ -76,7 +76,7 @@ export const skills: Skill[] = [
     icon: "/icons/threejs.png",
     categories: ["programming", "3d"],
     proficiency: 80,
-    color: "#000000"
+    color: "#ADADAD"
   },
   {
     name: "JavaScript",
@@ -178,7 +178,7 @@ export const skills: Skill[] = [
     icon: "/icons/procreate.png",
     categories: ["design"],
     proficiency: 65,
-    color: "#000000"
+    color: "#7540e5"
   },
   {
     name: "Character Creator",
@@ -222,7 +222,7 @@ export const skills: Skill[] = [
     icon: "/icons/Capture_One.png",
     categories: ["video", "design"],
     proficiency: 65,
-    color: "#000000"
+    color: "#7540e5"
   },
 
   // Languages

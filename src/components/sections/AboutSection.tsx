@@ -20,12 +20,12 @@ const AboutSection = () => {
       label: "Projects Completed",
       color: "text-purple-600 dark:text-purple-400"
     },
-    {
-      icon: Users,
-      value: "50+",
-      label: "Satisfied Clients",
-      color: "text-green-600 dark:text-green-400"
-    },
+    // {
+    //   icon: Users,
+    //   value: "50+",
+    //   label: "Satisfied Clients",
+    //   color: "text-green-600 dark:text-green-400"
+    // },
     {
       icon: Target,
       value: "4",
@@ -148,7 +148,7 @@ const AboutSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-20 justify-center"
         >
           {stats.map((stat, index) => (
             <div
