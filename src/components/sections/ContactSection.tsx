@@ -14,27 +14,98 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear errors when user starts typing
+    if (errors.length > 0) {
+      setErrors([]);
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors: string[] = [];
+    
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      newErrors.push('Name must be at least 2 characters long');
+    }
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      newErrors.push('Please enter a valid email address');
+    }
+    
+    if (!formData.subject.trim() || formData.subject.trim().length < 3) {
+      newErrors.push('Subject must be at least 3 characters long');
+    }
+    
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      newErrors.push('Message must be at least 10 characters long');
+    }
+    
+    if (formData.name.length > 100) {
+      newErrors.push('Name must be less than 100 characters');
+    }
+    
+    if (formData.subject.length > 200) {
+      newErrors.push('Subject must be less than 200 characters');
+    }
+    
+    if (formData.message.length > 2000) {
+      newErrors.push('Message must be less than 2000 characters');
+    }
+    
+    setErrors(newErrors);
+    return newErrors.length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Client-side validation
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
+    setErrors([]);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
-
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        if (result.details && Array.isArray(result.details)) {
+          setErrors(result.details);
+        } else {
+          setErrors([result.error || 'Failed to send message']);
+        }
+        return;
+      }
+      
+      setIsSubmitted(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSubmitted(false), 5000);
+      
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setErrors(['Network error. Please check your connection and try again.']);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -121,6 +192,20 @@ const ContactSection = () => {
                 >
                   <CheckCircle className="w-5 h-5 mr-2" />
                   Thank you! Your message has been sent successfully.
+                </motion.div>
+              )}
+
+              {errors.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg"
+                >
+                  <ul className="list-disc list-inside space-y-1">
+                    {errors.map((error, index) => (
+                      <li key={index}>{error}</li>
+                    ))}
+                  </ul>
                 </motion.div>
               )}
 
