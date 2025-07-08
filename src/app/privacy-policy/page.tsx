@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Mail, Cookie, User, Lock, FileText, Calendar, Globe } from 'lucide-react';
+import { Shield, Mail, Cookie, User, Lock, FileText, Calendar, Globe, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
 const PrivacyPolicyPage = () => {
@@ -249,7 +249,7 @@ const PrivacyPolicyPage = () => {
           
           <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
             <p className="text-sm">
-              <strong>How to Exercise Your Rights:</strong> Contact me at piotr12451@gmail.com with your request. I will respond within 30 days and may need to verify your identity for security purposes.
+              <strong>How to Exercise Your Rights:</strong> Contact me at piotr12451@gmail.com with your request. I will respond within 120 days and may need to verify your identity for security purposes.
             </p>
           </div>
         </div>
@@ -373,6 +373,22 @@ const PrivacyPolicyPage = () => {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Back to Portfolio Button */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <Link
+            href="/"
+            className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group"
+          >
+            <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+            Back to Portfolio
+          </Link>
+        </motion.div>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -394,29 +410,6 @@ const PrivacyPolicyPage = () => {
           <div className="mt-6 text-sm text-gray-500 dark:text-gray-400">
             <p>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
             <p>Effective date: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-          </div>
-        </motion.div>
-
-        {/* Quick Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12"
-        >
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Navigation</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-              {sections.map((section) => (
-                <a
-                  key={section.id}
-                  href={`#${section.id}`}
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline p-2 rounded hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
-                >
-                  {section.title}
-                </a>
-              ))}
-            </div>
           </div>
         </motion.div>
 

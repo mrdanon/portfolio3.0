@@ -28,7 +28,9 @@ export const setCookie = (name: string, value: string, days: number = 365) => {
   const expires = new Date();
   expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
   
-  document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict;Secure`;
+  const cookieString = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Strict;Secure`;
+  document.cookie = cookieString;
+  console.log('🍪 Cookie set:', name);
 };
 
 export const getCookie = (name: string): string | null => {
@@ -49,6 +51,7 @@ export const deleteCookie = (name: string) => {
   if (typeof document === 'undefined') return;
   
   document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+  console.log('🗑️ Cookie deleted:', name);
 };
 
 // Cookie consent management
@@ -59,18 +62,17 @@ export const saveCookieConsent = (consent: CookieConsent) => {
     version: COOKIE_CONSENT_VERSION
   };
   
+  console.log('💾 Saving cookie consent:', consentWithTimestamp);
   setCookie(COOKIE_CONSENT_KEY, JSON.stringify(consentWithTimestamp), 365);
   
   // Clean up non-consented cookies
   if (!consent.analytics) {
-    // Remove analytics cookies if they exist
     deleteCookie('_ga');
     deleteCookie('_gid');
     deleteCookie('_gat');
   }
   
   if (!consent.marketing) {
-    // Remove marketing cookies if they exist
     deleteCookie('_fbp');
     deleteCookie('_fbc');
   }
@@ -81,18 +83,24 @@ export const saveCookieConsent = (consent: CookieConsent) => {
 export const getCookieConsent = (): CookieConsent | null => {
   const consent = getCookie(COOKIE_CONSENT_KEY);
   
-  if (!consent) return null;
+  if (!consent) {
+    console.log('❌ No cookie consent found');
+    return null;
+  }
   
   try {
     const parsed = JSON.parse(consent);
+    console.log('✅ Cookie consent loaded:', parsed);
     
     // Check if consent is for current version
     if (parsed.version !== COOKIE_CONSENT_VERSION) {
+      console.log('🔄 Cookie consent version mismatch, clearing');
       return null;
     }
     
     return parsed;
-  } catch {
+  } catch (error) {
+    console.error('💥 Error parsing cookie consent:', error);
     return null;
   }
 };
@@ -102,30 +110,77 @@ export const hasConsent = (type: keyof Omit<CookieConsent, 'timestamp' | 'versio
   return consent ? consent[type] : false;
 };
 
+// Global cookie popup management
+let globalCookiePopupController: {
+  show: () => void;
+  hide: () => void;
+  showSettings: () => void;
+} | null = null;
+
+export const registerCookiePopupController = (controller: {
+  show: () => void;
+  hide: () => void;
+  showSettings: () => void;
+}) => {
+  globalCookiePopupController = controller;
+  console.log('🎮 Cookie popup controller registered');
+};
+
+export const showCookiePopup = () => {
+  console.log('📢 Show cookie popup requested');
+  if (globalCookiePopupController) {
+    globalCookiePopupController.show();
+  } else {
+    console.warn('⚠️ Cookie popup controller not registered');
+  }
+};
+
+export const hideCookiePopup = () => {
+  console.log('🔇 Hide cookie popup requested');
+  if (globalCookiePopupController) {
+    globalCookiePopupController.hide();
+  }
+};
+
+export const showCookieSettings = () => {
+  console.log('⚙️ Show cookie settings requested');
+  if (globalCookiePopupController) {
+    globalCookiePopupController.showSettings();
+  } else {
+    console.warn('⚠️ Cookie popup controller not registered');
+  }
+};
+
 // React hook for cookie consent
 export const useCookieConsent = () => {
   const [consent, setConsent] = useState<CookieConsent | null>(null);
-  const [showBanner, setShowBanner] = useState(false);
+  const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
+    console.log('🔍 Checking existing consent');
     const existingConsent = getCookieConsent();
     
     if (existingConsent) {
+      console.log('✅ Found existing consent');
       setConsent(existingConsent);
-      setShowBanner(false);
+      setHasConsent(true);
     } else {
-      setShowBanner(true);
+      console.log('❌ No existing consent found');
+      setHasConsent(false);
     }
   }, []);
 
   const updateConsent = (newConsent: Partial<CookieConsent>) => {
+    console.log('🔄 Updating consent:', newConsent);
     const fullConsent = { ...defaultConsent, ...newConsent };
     const savedConsent = saveCookieConsent(fullConsent);
     setConsent(savedConsent);
-    setShowBanner(false);
+    setHasConsent(true);
+    hideCookiePopup();
   };
 
   const acceptAll = () => {
+    console.log('✅ Accept all cookies');
     updateConsent({
       necessary: true,
       analytics: true,
@@ -135,6 +190,7 @@ export const useCookieConsent = () => {
   };
 
   const acceptNecessary = () => {
+    console.log('⚠️ Accept necessary only');
     updateConsent({
       necessary: true,
       analytics: false,
@@ -144,15 +200,16 @@ export const useCookieConsent = () => {
   };
 
   const revokeConsent = () => {
+    console.log('🗑️ Revoking consent');
     deleteCookie(COOKIE_CONSENT_KEY);
     setConsent(null);
-    setShowBanner(true);
+    setHasConsent(false);
+    showCookiePopup();
   };
 
   return {
     consent,
-    showBanner,
-    hasConsent: consent !== null,
+    hasConsent,
     updateConsent,
     acceptAll,
     acceptNecessary,

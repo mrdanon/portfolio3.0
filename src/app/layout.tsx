@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from '@/components/layout/ThemeProvider';
-import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollIndicator from '@/components/layout/ScrollIndicator';
-import CookieConsent from '@/components/layout/CookieConsent';
+import CookiePopup from '@/components/layout/CookiePopup';
+import ConditionalHeader from '@/components/layout/ConditionalHeader';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -81,11 +81,11 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-            <Header />
+            <ConditionalHeader />
             <main>{children}</main>
             <Footer />
             <ScrollIndicator />
-            <CookieConsent />
+            <CookiePopup />
           </div>
         </ThemeProvider>
       </body>

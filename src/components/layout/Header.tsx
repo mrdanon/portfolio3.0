@@ -57,17 +57,18 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-20 min-w-0">
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
+            className="flex items-center space-x-2 min-w-0 flex-shrink"
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
               <span className="text-white font-bold text-xl">P</span>
             </div>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">
-              Piotr Dankowiakowski
+            <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white truncate">
+              <span className="hidden sm:inline">Piotr Dankowiakowski</span>
+              <span className="sm:hidden">P. Dankowiakowski</span>
             </span>
           </motion.div>
 
@@ -97,14 +98,14 @@ const Header = () => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center space-x-2">
+          <div className="lg:hidden flex items-center space-x-1 flex-shrink-0">
             <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
             >
-              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </motion.button>
             
             <motion.button
@@ -113,7 +114,7 @@ const Header = () => {
               whileTap={{ scale: 0.9 }}
               className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </motion.button>
           </div>
         </div>

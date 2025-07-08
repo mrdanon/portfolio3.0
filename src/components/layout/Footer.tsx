@@ -4,11 +4,9 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Youtube, Instagram, ExternalLink, Cookie, Shield } from 'lucide-react';
 import { personal } from '@/data/personal';
 import Link from 'next/link';
-import { useCookieConsent } from '@/lib/cookies';
+import { showCookieSettings } from '@/lib/cookies';
 
 const Footer = () => {
-  const { revokeConsent } = useCookieConsent();
-
   const socialLinks = [
     {
       name: 'YouTube',
@@ -50,6 +48,11 @@ const Footer = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleCookieSettings = () => {
+    console.log('🔧 Footer: Opening cookie settings');
+    showCookieSettings();
   };
 
   return (
@@ -177,7 +180,7 @@ const Footer = () => {
                   <span>Privacy Policy</span>
                 </Link>
                 <button
-                  onClick={revokeConsent}
+                  onClick={handleCookieSettings}
                   className="flex items-center space-x-1 hover:text-white transition-colors duration-200"
                 >
                   <Cookie size={14} />
