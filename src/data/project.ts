@@ -59,7 +59,7 @@ export const projects: Project[] = [
     description: "A comprehensive showcase of my 3D animation, architectural visualization, and educational content work spanning multiple years.",
     categories: ["3d", "animation", "video"],
     image: "/Showreel_cover.webp",
-    video: "https://www.youtube.com/@dr.blender",
+    video: "https://youtu.be/x8epLpXvGd4?si=g9hub7sRKTmZ2EP-",
     technologies: ["Blender", "After Effects", "Premiere Pro", "DaVinci Resolve"],
     featured: true,
     gallery: ["/Showreel_cover.webp"]

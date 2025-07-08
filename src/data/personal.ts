@@ -9,7 +9,7 @@ export const personal: PersonalInfo = {
   website: "https://piotr.danon.site",
   about: "Experienced 3D artist, AI specialist, and educator with a strong foundation in Blender, Unreal Engine, and programming. Skilled in developing custom Blender addons, creating educational and architectural animations, integrating AI-driven solutions, and delivering interactive prototypes.",
   social: {
-    youtube: "https://www.youtube.com/@dr.blender",
+    youtube: "https://youtu.be/x8epLpXvGd4?si=g9hub7sRKTmZ2EP-",
     instagram: "https://www.instagram.com/doctor.blender/",
     artstation: "https://www.artstation.com/piotrdankowiakowski",
     github: "https://github.com/mrdanon"
