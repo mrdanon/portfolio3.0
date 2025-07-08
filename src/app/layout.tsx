@@ -5,6 +5,7 @@ import ThemeProvider from '@/components/layout/ThemeProvider';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollIndicator from '@/components/layout/ScrollIndicator';
+import CookieConsent from '@/components/layout/CookieConsent';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -84,6 +85,7 @@ export default function RootLayout({
             <main>{children}</main>
             <Footer />
             <ScrollIndicator />
+            <CookieConsent />
           </div>
         </ThemeProvider>
       </body>

@@ -1,10 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Youtube, Instagram, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, Youtube, Instagram, ExternalLink, Cookie, Shield } from 'lucide-react';
 import { personal } from '@/data/personal';
+import Link from 'next/link';
+import { useCookieConsent } from '@/lib/cookies';
 
 const Footer = () => {
+  const { revokeConsent } = useCookieConsent();
+
   const socialLinks = [
     {
       name: 'YouTube',
@@ -157,12 +161,30 @@ const Footer = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="border-t border-gray-800 dark:border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center"
+          className="border-t border-gray-800 dark:border-gray-800 mt-12 pt-8"
         >
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} {personal.name}. All rights reserved.
-          </p>
-          <div className="flex items-center space-x-4 mt-4 sm:mt-0">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-4 text-gray-400 text-sm">
+              <p>
+                © {new Date().getFullYear()} {personal.name}. All rights reserved.
+              </p>
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/privacy-policy"
+                  className="flex items-center space-x-1 hover:text-white transition-colors duration-200"
+                >
+                  <Shield size={14} />
+                  <span>Privacy Policy</span>
+                </Link>
+                <button
+                  onClick={revokeConsent}
+                  className="flex items-center space-x-1 hover:text-white transition-colors duration-200"
+                >
+                  <Cookie size={14} />
+                  <span>Cookie Settings</span>
+                </button>
+              </div>
+            </div>
             <motion.button
               onClick={scrollToTop}
               whileHover={{ scale: 1.1 }}
