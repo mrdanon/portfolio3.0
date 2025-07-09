@@ -1,38 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, BookOpen, Briefcase, Target } from 'lucide-react';
+import { Award, BookOpen } from 'lucide-react';
 import { personal } from '@/data/personal';
 import { achievements, education } from '@/data/experience';
 import Image from 'next/image';
 
 const AboutSection = () => {
-  const stats = [
-    {
-      icon: Briefcase,
-      value: "5+",
-      label: "Years Experience",
-      color: "text-blue-600 dark:text-blue-400"
-    },
-    {
-      icon: Award,
-      value: "200+",
-      label: "Projects Completed",
-      color: "text-purple-600 dark:text-purple-400"
-    },
-    // {
-    //   icon: Users,
-    //   value: "50+",
-    //   label: "Satisfied Clients",
-    //   color: "text-green-600 dark:text-green-400"
-    // },
-    {
-      icon: Target,
-      value: "4",
-      label: "Blender Addons",
-      color: "text-orange-600 dark:text-orange-400"
-    }
-  ];
 
   const highlights = [
     {
@@ -142,29 +116,7 @@ const AboutSection = () => {
           </motion.div>
         </div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-20 justify-center"
-        >
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-lg transition-shadow duration-200"
-            >
-              <stat.icon className={`w-8 h-8 ${stat.color} mx-auto mb-4`} />
-              <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                {stat.value}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+
 
         {/* Highlights */}
         <motion.div

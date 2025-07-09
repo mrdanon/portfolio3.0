@@ -92,6 +92,7 @@ export const experiences: Experience[] = [
       "Unreal Engine",
       "3D Modeling"
     ],
+    logo: "/logos/freelance_logo.webp"
   }
 ]
 

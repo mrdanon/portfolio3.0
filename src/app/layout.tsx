@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import ScrollIndicator from '@/components/layout/ScrollIndicator';
 import CookiePopup from '@/components/layout/CookiePopup';
 import ConditionalHeader from '@/components/layout/ConditionalHeader';
+import Script from 'next/script';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -74,6 +75,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#111827" media="(prefers-color-scheme: dark)" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/MyPhotosmall.jpg" />
+        <Script
+          async
+          defer
+          data-website-id="61e252b6-9d2c-43ea-a84f-004ade9120f8"
+          src="http://umami.app.drdanon.xyz/umami.js"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

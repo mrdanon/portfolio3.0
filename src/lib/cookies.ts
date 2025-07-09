@@ -10,6 +10,7 @@ export interface CookieConsent {
 }
 
 const COOKIE_CONSENT_KEY = 'portfolio_cookie_consent';
+const COOKIE_POPUP_SHOWN_KEY = 'portfolio_cookie_popup_shown';
 const COOKIE_CONSENT_VERSION = '1.0';
 
 export const defaultConsent: CookieConsent = {
@@ -19,6 +20,53 @@ export const defaultConsent: CookieConsent = {
   preferences: false,
   timestamp: new Date().toISOString(),
   version: COOKIE_CONSENT_VERSION
+};
+
+// LocalStorage utility functions
+export const setLocalStorage = (key: string, value: string) => {
+  if (typeof window === 'undefined') return;
+  
+  try {
+    localStorage.setItem(key, value);
+    console.log('💾 LocalStorage set:', key);
+  } catch (error) {
+    console.error('❌ LocalStorage set error:', error);
+  }
+};
+
+export const getLocalStorage = (key: string): string | null => {
+  if (typeof window === 'undefined') return null;
+  
+  try {
+    const value = localStorage.getItem(key);
+    console.log('🔍 LocalStorage get:', key, value ? 'found' : 'not found');
+    return value;
+  } catch (error) {
+    console.error('❌ LocalStorage get error:', error);
+    return null;
+  }
+};
+
+export const removeLocalStorage = (key: string) => {
+  if (typeof window === 'undefined') return;
+  
+  try {
+    localStorage.removeItem(key);
+    console.log('🗑️ LocalStorage removed:', key);
+  } catch (error) {
+    console.error('❌ LocalStorage remove error:', error);
+  }
+};
+
+// Cookie popup state management
+export const hasShownCookiePopup = (): boolean => {
+  const shown = getLocalStorage(COOKIE_POPUP_SHOWN_KEY);
+  return shown === 'true';
+};
+
+export const markCookiePopupAsShown = () => {
+  setLocalStorage(COOKIE_POPUP_SHOWN_KEY, 'true');
+  console.log('✅ Cookie popup marked as shown');
 };
 
 // Cookie utility functions
@@ -64,6 +112,9 @@ export const saveCookieConsent = (consent: CookieConsent) => {
   
   console.log('💾 Saving cookie consent:', consentWithTimestamp);
   setCookie(COOKIE_CONSENT_KEY, JSON.stringify(consentWithTimestamp), 365);
+  
+  // Mark popup as shown in localStorage
+  markCookiePopupAsShown();
   
   // Clean up non-consented cookies
   if (!consent.analytics) {
@@ -155,18 +206,26 @@ export const showCookieSettings = () => {
 export const useCookieConsent = () => {
   const [consent, setConsent] = useState<CookieConsent | null>(null);
   const [hasConsent, setHasConsent] = useState(false);
+  const [shouldShowPopup, setShouldShowPopup] = useState(false);
 
   useEffect(() => {
-    console.log('🔍 Checking existing consent');
+    console.log('🔍 Checking existing consent and popup state');
     const existingConsent = getCookieConsent();
+    const popupShown = hasShownCookiePopup();
     
     if (existingConsent) {
       console.log('✅ Found existing consent');
       setConsent(existingConsent);
       setHasConsent(true);
-    } else {
-      console.log('❌ No existing consent found');
+      setShouldShowPopup(false);
+    } else if (popupShown) {
+      console.log('⚠️ No consent but popup was shown before');
       setHasConsent(false);
+      setShouldShowPopup(false);
+    } else {
+      console.log('❌ No existing consent and popup not shown');
+      setHasConsent(false);
+      setShouldShowPopup(true);
     }
   }, []);
 
@@ -176,6 +235,7 @@ export const useCookieConsent = () => {
     const savedConsent = saveCookieConsent(fullConsent);
     setConsent(savedConsent);
     setHasConsent(true);
+    setShouldShowPopup(false);
     hideCookiePopup();
   };
 
@@ -202,14 +262,17 @@ export const useCookieConsent = () => {
   const revokeConsent = () => {
     console.log('🗑️ Revoking consent');
     deleteCookie(COOKIE_CONSENT_KEY);
+    removeLocalStorage(COOKIE_POPUP_SHOWN_KEY);
     setConsent(null);
     setHasConsent(false);
+    setShouldShowPopup(true);
     showCookiePopup();
   };
 
   return {
     consent,
     hasConsent,
+    shouldShowPopup,
     updateConsent,
     acceptAll,
     acceptNecessary,

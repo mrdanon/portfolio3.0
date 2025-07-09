@@ -12,7 +12,7 @@ import {
 import Link from 'next/link';
 
 const CookiePopup = () => {
-  const { consent, hasConsent, updateConsent, acceptAll, acceptNecessary } = useCookieConsent();
+  const { consent, hasConsent, shouldShowPopup, updateConsent, acceptAll, acceptNecessary } = useCookieConsent();
   
   const [isVisible, setIsVisible] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -54,16 +54,16 @@ const CookiePopup = () => {
 
     registerCookiePopupController(controller);
 
-    // Show popup on initial load if no consent
-    if (!hasConsent) {
-      console.log('🚀 No consent found, showing initial popup');
+    // Show popup on initial load if should show
+    if (shouldShowPopup) {
+      console.log('🚀 Should show popup, displaying initial popup');
       setIsVisible(true);
     }
 
     return () => {
       // Cleanup if needed
     };
-  }, [hasConsent, consent]);
+  }, [hasConsent, consent, shouldShowPopup]);
 
   const handleCustomAccept = () => {
     console.log('💾 Saving custom consent:', customConsent);

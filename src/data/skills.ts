@@ -32,6 +32,18 @@ export const skillCategories: SkillCategory[] = [
     description: 'Video editing, motion graphics, and post-production'
   },
   {
+    id: 'photo',
+    name: 'Photography',
+    color: '#6B7280',
+    description: 'Photo editing and image processing'
+  },
+  {
+    id: 'devops',
+    name: 'DevOps & Cloud',
+    color: '#6B7280',
+    description: 'Development operations and cloud infrastructure'
+  },
+  {
     id: 'languages',
     name: 'Languages',
     color: '#6B7280',
@@ -62,6 +74,13 @@ export const skills: Skill[] = [
     proficiency: 70,
     color: "#4ECDC4"
   },
+  {
+    name: "Toon Boom Harmony",
+    icon: "/icons/harmony.png",
+    categories: ["3d", "video"],
+    proficiency: 60,
+    color: "#FF6B6B"
+  },
 
   // Programming
   {
@@ -86,6 +105,13 @@ export const skills: Skill[] = [
     color: "#F7DF1E"
   },
   {
+    name: "React",
+    icon: "/icons/react-512.webp",
+    categories: ["programming"],
+    proficiency: 70,
+    color: "#61DAFB"
+  },
+  {
     name: "HTML/CSS",
     icon: "/icons/vscode.png",
     categories: ["programming"],
@@ -105,6 +131,36 @@ export const skills: Skill[] = [
     categories: ["programming"],
     proficiency: 90,
     color: "#007ACC"
+  },
+  {
+    name: "GitHub",
+    icon: "/icons/github.png",
+    categories: ["programming"],
+    proficiency: 80,
+    color: "#181717"
+  },
+
+  // DevOps & Cloud
+  {
+    name: "CapRover",
+    icon: "/icons/cap_rover.png",
+    categories: ["devops"],
+    proficiency: 70,
+    color: "#4ECDC4"
+  },
+  {
+    name: "Docker",
+    icon: "/icons/Docer_icon.webp",
+    categories: ["devops", "programming"],
+    proficiency: 50,
+    color: "#2496ED"
+  },
+  {
+    name: "Hetzner Cloud",
+    icon: "/icons/hetzner_cloud.jpg",
+    categories: ["devops"],
+    proficiency: 65,
+    color: "#D50C2D"
   },
 
   // AI & Machine Learning
@@ -167,6 +223,20 @@ export const skills: Skill[] = [
     color: "#FF3366"
   },
   {
+    name: "Affinity Designer",
+    icon: "/icons/designer_icon.png",
+    categories: ["design"],
+    proficiency: 80,
+    color: "#1B72BE"
+  },
+  {
+    name: "Affinity Publisher",
+    icon: "/icons/publisher_icon.png",
+    categories: ["design"],
+    proficiency: 80,
+    color: "#C9284D"
+  },
+  {
     name: "Krita",
     icon: "/icons/krita.png",
     categories: ["design"],
@@ -186,6 +256,22 @@ export const skills: Skill[] = [
     categories: ["design", "3d"],
     proficiency: 70,
     color: "#FF6B6B"
+  },
+
+  // Photography
+  {
+    name: "Affinity Photo",
+    icon: "/icons/photo_icon.png",
+    categories: ["photo", "design"],
+    proficiency: 70,
+    color: "#7E4DD2"
+  },
+  {
+    name: "Capture One",
+    icon: "/icons/Capture_One.png",
+    categories: ["photo", "design"],
+    proficiency: 65,
+    color: "#7540e5"
   },
 
   // Video Production
@@ -216,13 +302,6 @@ export const skills: Skill[] = [
     categories: ["video"],
     proficiency: 60,
     color: "#9999FF"
-  },
-  {
-    name: "Capture One",
-    icon: "/icons/Capture_One.png",
-    categories: ["video", "design"],
-    proficiency: 65,
-    color: "#7540e5"
   },
 
   // Languages

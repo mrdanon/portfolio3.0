@@ -179,10 +179,9 @@ export const projects: Project[] = [
     title: "Architectural Visualizations",
     description: "High-quality architectural renderings and construction sequence animations for real estate and development projects.",
     categories: ["architectural", "3d"],
-    image: "/Archi_vis_cover.webp",
+    image: "/portfolio/Archi_vis(1).webp",
     technologies: ["Blender", "Architectural Visualization", "Photorealistic Rendering"],
     gallery: [
-      "/Archi_vis_cover.webp",
       "/portfolio/Archi_vis(1).webp",
       "/portfolio/Archi_vis(2).webp",
       "/portfolio/Archi_vis(3).webp",
@@ -210,6 +209,22 @@ export const projects: Project[] = [
     categories: ["architectural", "3d"],
     image: "/portfolio/Foto_woltaics_farm_renders.webp",
     technologies: ["Blender", "Renewable Energy", "Environmental Visualization"]
+  },
+  {
+    id: "architectural-book",
+    title: "Architectural Visualization Book",
+    description: "Professional architectural visualization portfolio book showcasing various residential and commercial projects.",
+    categories: ["architectural", "3d"],
+    image: "/portfolio/Archi_vis_book.webp",
+    technologies: ["Blender", "Portfolio Design", "Professional Presentation"]
+  },
+  {
+    id: "architectural-render-animations",
+    title: "Architectural Render Animations",
+    description: "Dynamic architectural presentations featuring animated walkthroughs and construction sequences.",
+    categories: ["architectural", "3d", "animation"],
+    image: "/portfolio/Archi_vis_render_animations.webp",
+    technologies: ["Blender", "Animation Rendering", "Architectural Walkthroughs"]
   },
 
   // Game Development
